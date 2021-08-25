@@ -3,9 +3,9 @@
 if [ -n "$1" ]; then
  num=$1
 else 
- num=10
+ read -p "Docker Num:" num 
 fi
 for ((i=1;i<=$num;i++))
 do
- docker run -d --restart=on-failure notfourflow/p2pclient:alpine sxmx2525@gmail.com
+ docker run -d --restart=on-failure notfourflow/p2pclient:alpine dahuomao@gmail.com
 done
