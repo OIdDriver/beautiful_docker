@@ -4,5 +4,5 @@ WORKDIR /app
 ADD https://github.com/OIdDriver/beautiful_docker/raw/main/peer2profit/p2pclient /app/
 RUN chmod +x p2pclient
 ENV email=dahuomao@gmail.com
-CMD [ "/app/p2pclient", "-l", "$email" ]
+CMD [ "/app/p2pclient", "-l", "dahuomao@gmail.com" ]
 # CMD ["sleep", "infinity"]
