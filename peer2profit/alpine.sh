@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [ -n "$1" ]; then
+ num=$1
+else 
+ num=10
+fi
+for ((i=1;i<=$num;i++))
+do
+ docker run -d --restart=on-failure notfourflow/p2pclient:alpine sxmx2525@gmail.com
+done
