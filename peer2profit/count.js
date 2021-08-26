@@ -33,7 +33,7 @@ const converToM = (traffic) => {
 	}
 };
 
-let listData = temp1 || temp1.peers;
+let listData = temp1.peers || temp1;
 let ipList = arrayGroupBy(listData,'ip'); 
 let newList = [];
 for(i=0;i<ipList.length;i++){
