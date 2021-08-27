@@ -73,5 +73,5 @@ newList.sort(function (a, b) {
 });
 
 for(i=0;i<newList.length;i++){
-    console.info(newList[i].type,newList[i].ip,newList[i].isp,Math.floor(newList[i].totalTraffic) + 'M',Math.floor(newList[i].totalTraffic/(newList[i].totalHours/24))+'M/d');
+    console.info(newList[i].type,newList[i].ip,newList[i].isp,Math.floor(newList[i].totalTraffic) + 'M',Math.floor(newList[i].totalTraffic/(newList[i].totalHours/24))+'M/d',newList[i].sub.length+'Nodes');
 };
