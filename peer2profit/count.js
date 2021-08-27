@@ -34,18 +34,35 @@ const converToM = (traffic) => {
 	}
 };
 
+const converToH = (uptime) => {
+	if(uptime){
+		var pattern = /(\d+)д.\s*(\d+)ч.(\d+)м.(\d+)сек./
+		var times = uptime.match(pattern);
+		if(times && times.length==5){
+			var total = 0.0;
+			total += times[1]*24;
+			total += times[2]*1;
+			total += times[3]/24;
+			return total;
+		}
+	}
+	return 0;
+	
+};
+
 let listData = temp1.peers || temp1;
 let ipList = arrayGroupBy(listData,'ip'); 
 let newList = [];
 for(i=0;i<ipList.length;i++){
 	if(ipList[i] && ipList[i].length>0){
 		let newHost = JSON.parse(JSON.stringify(ipList[i][0]));		
-		newHost.totalTraffic = converToM(newHost.totalTraffic);
-		newHost.sub=[];
-		newHost.sub.push(ipList[i][0]);
-		for(j=1;j<ipList[i].length;j++){
+		newHost.totalTraffic = 0;
+		newHost.totalHours = 0;
+		newHost.sub=[];		
+		for(j=0;j<ipList[i].length;j++){
 			let host = ipList[i][j];
 			newHost.totalTraffic += converToM(host.totalTraffic);
+			newHost.totalHours += converToH(host.uptime);
 			newHost.sub.push(host);
 		};
 		newList.push(newHost);
@@ -56,5 +73,5 @@ newList.sort(function (a, b) {
 });
 
 for(i=0;i<newList.length;i++){
-    console.info(newList[i].type,newList[i].ip,newList[i].isp,Math.floor(newList[i].totalTraffic) + 'M');
+    console.info(newList[i].type,newList[i].ip,newList[i].isp,Math.floor(newList[i].totalTraffic) + 'M',Math.floor(newList[i].totalTraffic/(newList[i].totalHours/24))+'M/d');
 };
