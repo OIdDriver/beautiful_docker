@@ -51,8 +51,8 @@ const converToH = (uptime) => {
 };
 
 	let listData = temp1.peers || temp1;
-	let listData2 = temp2.peers || temp2;
-	let listData3 = temp3.peers || temp3;
+	let listData2 = temp2? (temp2.peers || temp2):[];
+	let listData3 = temp3? (temp3.peers || temp3):[];
 	listData = listData.concat(listData2).concat(listData3);
 	let ipList = arrayGroupBy(listData,'ip'); 
 	let newList = [];
