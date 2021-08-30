@@ -49,8 +49,11 @@ const converToH = (uptime) => {
 	return 0;
 	
 };
-const getCount = () => {
+
 	let listData = temp1.peers || temp1;
+	let listData2 = temp2.peers || temp2;
+	let listData3 = temp3.peers || temp3;
+	listData = listData.concat(listData2).concat(listData3);
 	let ipList = arrayGroupBy(listData,'ip'); 
 	let newList = [];
 	for(i=0;i<ipList.length;i++){
@@ -75,4 +78,4 @@ const getCount = () => {
 	for(i=0;i<newList.length;i++){
 	    console.info(newList[i].type,newList[i].ip,newList[i].isp,Math.floor(newList[i].totalTraffic) + 'M',Math.floor(newList[i].totalTraffic/(newList[i].totalHours/24))+'M/d',newList[i].sub.length+'Nodes');
 	};
-}
+
