@@ -51,8 +51,8 @@ const converToH = (uptime) => {
 };
 
 	let listData = temp1.peers || temp1;
-	let listData2 = temp2? (temp2.peers || temp2):[];
-	let listData3 = temp3? (temp3.peers || temp3):[];
+	let listData2 = typeof(temp2)!=="undefined"? (temp2.peers || temp2):[];
+	let listData3 = typeof(temp3)!=="undefined"? (temp3.peers || temp3):[];
 	listData = listData.concat(listData2).concat(listData3);
 	let ipList = arrayGroupBy(listData,'ip'); 
 	let newList = [];
@@ -76,6 +76,6 @@ const converToH = (uptime) => {
 	});
 
 	for(i=0;i<newList.length;i++){
-	    console.info(newList[i].type,newList[i].ip,newList[i].isp,Math.floor(newList[i].totalTraffic) + 'M',Math.floor(newList[i].totalTraffic/(newList[i].totalHours/24))+'M/d',newList[i].sub.length+'Nodes');
+	    console.info(newList[i].type,newList[i].ip,newList[i].isp,Math.floor(newList[i].totalTraffic) + 'M',Math.floor(newList[i].totalTraffic/(newList[i].totalHours/24)*newList[i].sub.length)+'M/d',newList[i].sub.length+'Nodes');
 	};
 
